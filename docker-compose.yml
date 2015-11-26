@@ -1,7 +1,14 @@
 web:
   build: .
   volumes:
-   - .:/var/www/html
+    - .:/var/www/html
   env_file: .env
-mysql:
+  links:
+    - db
+db:
   image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=pass
+    - MYSQL_DATABASE=gazoapp_docker
+    - MYSQL_USER=gazoapp
+    - MYSQL_PASSWORD=pass
