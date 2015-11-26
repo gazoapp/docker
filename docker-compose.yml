@@ -3,3 +3,5 @@ web:
   volumes:
    - .:/var/www/html
   env_file: .env
+mysql:
+  image: mysql
