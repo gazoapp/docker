@@ -13,13 +13,13 @@ script:
   - if [ ! -z "$TRAVIS_TAG" ]; then docker tag gazoapp/docker:latest gazoapp/docker:$TRAVIS_TAG; fi && docker push gazoapp/docker
 
 deploy:
-  - provider: elasticbeanstalk
-    app: gazoapp
-    env: gazoapp-dev2
-    region: us-west-2
-    access_key_id:
-      secure: $AWS_ACCESS_KEY_ID
-    access_secret_key:
-      secure: $AWS_SECRET_KEY
-    on:
-      branch: master
+  provider: elasticbeanstalk
+  app: gazoapp
+  env: gazoapp-dev2
+  region: us-west-2
+  access_key_id:
+    secure: $AWS_ACCESS_KEY_ID
+  access_secret_key:
+    secure: $AWS_SECRET_KEY
+  on:
+    branch: master
