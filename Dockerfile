@@ -2,7 +2,7 @@ FROM php:5.6-apache
 
 # Install dependencies
 RUN apt-get update -y
-RUN apt-get install -y curl
+RUN apt-get install -y curl git
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php
