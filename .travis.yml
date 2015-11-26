@@ -7,6 +7,6 @@ services:
 
 script:
   - docker build -t gazoapp/docker .
-  - docker tag gazoapp/docker:latest gazoapp/docker:latest
+  - docker tag -f gazoapp/docker:latest gazoapp/docker:latest
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push gazoapp/docker
