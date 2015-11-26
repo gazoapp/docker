@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "docker",
+      "image": "gazoapp/docker:latest",
+      "essential": true,
+      "memory": 512
+    }
+  ]
+}
