@@ -5,8 +5,12 @@ language: php
 services:
   - docker
 
-script:
-  - docker build -t gazoapp/docker .
-  - docker tag -f gazoapp/docker:latest gazoapp/docker:latest
+install:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push gazoapp/docker
+
+script:
+  - docker build -t $DOCKER_IMAGE_NAME .
+  - if [ ! -z "$TRAVIS_TAG" ]; then docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_IMAGE_NAME:$TRAVIS_TAG; fi && docker push $DOCKER_IMAGE_NAME
+
+env:
+  - DOCKER_IMAGE_NAME=gazoapp/docker
