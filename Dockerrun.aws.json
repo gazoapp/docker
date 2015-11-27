@@ -36,7 +36,7 @@
     {
       "name": "composer",
       "image": "gazoapp/composer",
-      "essential": true,
+      "essential": false,
       "memory": 128,
       "command": [
         "install"
@@ -51,7 +51,7 @@
     {
       "name": "phinx",
       "image": "gazoapp/phinx",
-      "essential": true,
+      "essential": false,
       "memory": 128,
       "command": [
         "migrate"
