@@ -12,7 +12,7 @@
     {
       "name": "data",
       "image": "gazoapp/data",
-      "essential": true,
+      "essential": false,
       "memory": 128,
       "mountPoints": [
         {
