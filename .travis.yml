@@ -2,6 +2,9 @@ sudo: required
 
 language: php
 
+script:
+  - echo 0
+
 deploy:
   - provider: elasticbeanstalk
     app: gazoapp
