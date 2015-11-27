@@ -52,7 +52,7 @@
       "name": "phinx",
       "image": "gazoapp/phinx",
       "essential": true,
-      "memory": 128,
+      "memory": 512,
       "command": [
         "migrate"
       ],
