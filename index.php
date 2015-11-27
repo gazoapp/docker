@@ -19,10 +19,10 @@ function debug($var)
 $config = new Configuration();
 $connectionParams = [
     'driver' => 'pdo_mysql',
-    'host' => getenv('DB_HOST'),
-    'user' => getenv('DB_USER'),
-    'password' => getenv('DB_PASSWORD'),
-    'dbname' => getenv('DB_DATABASE'),
+    'host' => getenv('RDS_HOSTNAME'),
+    'user' => getenv('RDS_USERNAME'),
+    'password' => getenv('RDS_PASSWORD'),
+    'dbname' => getenv('RDS_DB_NAME'),
 ];
 try {
     $conn = DriverManager::getConnection($connectionParams, $config);
