@@ -2,9 +2,10 @@
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
+use Ramsey\Uuid\Uuid;
 use Slim\App;
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 function debug($var)
 {
@@ -52,6 +53,30 @@ $app->get('/connections', function ($request, $response, $args) use ($db) {
 
     $response = $response->withHeader('Content-type', 'application/json');
     return $response->write(json_encode($connections));
+});
+
+$app->post('/connections', function ($request, $response, $args) use ($db) {
+    $faker = \Faker\Factory::create();
+
+    try {
+        $db
+            ->insert('connections')
+            ->setValue('id', '?')
+            ->setValue('name', '?')
+            ->setParameter(0, Uuid::uuid4())
+            ->setParameter(1, $faker->firstName)
+            ->execute();
+
+        $success = true;
+    } catch (Exception $e) {
+        debug($e);
+        $success = false;
+    }
+
+    $response = $response->withHeader('Content-type', 'application/json');
+    return $response->write(json_encode([
+        'success' => $success
+    ]));
 });
 
 /*

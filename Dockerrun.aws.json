@@ -1,15 +1,65 @@
 {
   "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "data",
+      "host": {
+        "sourcePath": "/var/app/current"
+      }
+    }
+  ],
   "containerDefinitions": [
     {
-      "name": "docker",
-      "image": "gazoapp/docker:latest",
+      "name": "data",
+      "image": "gazoapp/data",
       "essential": true,
       "memory": 512,
-      "portMappings": [
+      "mountPoints": [
         {
-          "hostPort": 80,
-          "containerPort": 80
+          "sourceVolume": "data",
+          "containerPath": "/data/www"
+        }
+      ]
+    },
+    {
+      "name": "web",
+      "image": "gazoapp/php",
+      "essential": true,
+      "memory": 512,
+      "volumesFrom": [
+        {
+          "sourceContainer": "data",
+          "readOnly": true
+        }
+      ]
+    },
+    {
+      "name": "composer",
+      "image": "gazoapp/composer",
+      "essential": true,
+      "memory": 512,
+      "command": [
+        "install"
+      ],
+      "volumesFrom": [
+        {
+          "sourceContainer": "data",
+          "readOnly": true
+        }
+      ]
+    },
+    {
+      "name": "phinx",
+      "image": "gazoapp/phinx",
+      "essential": true,
+      "memory": 128,
+      "command": [
+        "migrate"
+      ],
+      "volumesFrom": [
+        {
+          "sourceContainer": "data",
+          "readOnly": true
         }
       ]
     }

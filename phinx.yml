@@ -6,18 +6,18 @@ environments:
     default_database: development
     production:
         adapter: mysql
-        host: %%RDS_HOSTNAME%%
-        name: %%RDS_DB_NAME%%
-        user: %%RDS_USERNAME%%
-        pass: %%RDS_PASSWORD%%
+        host: %%PHINX_RDS_HOSTNAME%%
+        name: %%PHINX_RDS_DB_NAME%%
+        user: %%PHINX_RDS_USERNAME%%
+        pass: %%PHINX_RDS_PASSWORD%%
         port: 3306
         charset: utf8
 
     development:
         adapter: mysql
-        host: %%RDS_HOSTNAME%%
-        name: %%RDS_DB_NAME%%
-        user: %%RDS_USERNAME%%
-        pass: %%RDS_PASSWORD%%
+        host: %%PHINX_RDS_HOSTNAME%%
+        name: %%PHINX_RDS_DB_NAME%%
+        user: %%PHINX_RDS_USERNAME%%
+        pass: %%PHINX_RDS_PASSWORD%%
         port: 3306
         charset: utf8

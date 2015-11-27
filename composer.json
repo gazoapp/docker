@@ -3,6 +3,7 @@
         "fzaninotto/faker": "^1.5",
         "doctrine/dbal": "^2.5",
         "slim/slim": "^3.0@RC",
-        "robmorgan/phinx": "^0.4.6"
+        "robmorgan/phinx": "^0.4.6",
+        "ramsey/uuid": "^3.0"
     }
 }

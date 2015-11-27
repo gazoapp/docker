@@ -2,16 +2,6 @@ sudo: required
 
 language: php
 
-services:
-  - docker
-
-install:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-
-script:
-  - docker build -t gazoapp/docker .
-  - if [ ! -z "$TRAVIS_TAG" ]; then docker tag gazoapp/docker:latest gazoapp/docker:$TRAVIS_TAG; fi && docker push gazoapp/docker
-
 deploy:
   - provider: elasticbeanstalk
     app: gazoapp

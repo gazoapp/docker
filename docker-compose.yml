@@ -1,10 +1,16 @@
-web:
-  build: .
+data:
+  image: gazoapp/data
   volumes:
-    - .:/var/www/html
+    - .:/data/www
+
+web:
+  image: gazoapp/php
+  volumes_from:
+    - data
   env_file: .env
   links:
     - db
+
 db:
   image: mysql
   environment:
@@ -12,3 +18,16 @@ db:
     - MYSQL_DATABASE=gazoapp_docker
     - MYSQL_USER=gazoapp
     - MYSQL_PASSWORD=pass
+
+phinx:
+  image: gazoapp/phinx
+  volumes_from:
+    - data
+  env_file: .env.phinx
+  links:
+    - db
+
+composer:
+  image: composer/composer
+  volumes_from:
+    - data
